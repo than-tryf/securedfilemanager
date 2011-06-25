@@ -1,5 +1,12 @@
 package com.csc.sfm.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="T_RESTRICTIONS")
 public class Restriction {
 
   private Integer id;
@@ -9,6 +16,8 @@ public class Restriction {
    * GETTERS & SETTERS
    */
 
+  @Id
+  @Column(name="ID")
   public Integer getId() {
     return id;
   }

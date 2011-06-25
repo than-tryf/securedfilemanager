@@ -3,6 +3,13 @@ package com.csc.sfm.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="T_ACCESSES")
 public class Access {
 
   private Integer id;
@@ -19,6 +26,8 @@ public class Access {
    * GETTERS & SETTERS
    */
 
+  @Id
+  @Column(name="")
   public Integer getId() {
     return id;
   }
@@ -26,6 +35,7 @@ public class Access {
     this.id = id;
   }
   
+  @Column(name="CREATION_DATE")
   public Date getCreationDate() {
     return creationDate;
   }
@@ -33,6 +43,7 @@ public class Access {
     this.creationDate = creationDate;
   }
 
+  @Column(name="MODIFICATION_DATE")
   public Date getModificationDate() {
     return modificationDate;
   }
@@ -54,6 +65,7 @@ public class Access {
     this.resource = resource;
   }
   
+  @Column(name="DURATION_TYPE")
   public AccessDurationType getDurationType() {
     return durationType;
   }
@@ -61,6 +73,7 @@ public class Access {
     this.durationType = durationType;
   }
   
+  @Column(name="START_DATE")
   public Date getStartDate() {
     return startDate;
   }
@@ -68,6 +81,7 @@ public class Access {
     this.startDate = startDate;
   }
   
+  @Column(name="END_DATE")
   public Date getEndDate() {
     return endDate;
   }
