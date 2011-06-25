@@ -3,9 +3,16 @@ package com.csc.sfm.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -27,6 +34,7 @@ public class User {
    */
   
   @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
   @Column(name="ID")
   public Integer getId() {
     return id;
@@ -83,6 +91,12 @@ public class User {
     this.lastConnectionDate = lastConnectionDate;
   }
   
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+  @JoinTable(
+      name="T_ACCESSES",
+      joinColumns = @JoinColumn( name="USER_ID"),
+      inverseJoinColumns = @JoinColumn( name="ID")
+  )
   public List<Access> getAccesses() {
     return accesses;
   }

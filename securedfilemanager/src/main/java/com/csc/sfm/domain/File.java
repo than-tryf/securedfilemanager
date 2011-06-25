@@ -1,7 +1,11 @@
 package com.csc.sfm.domain;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("FILE")
 public class File extends Resource {
 
   private FileExtension extension;

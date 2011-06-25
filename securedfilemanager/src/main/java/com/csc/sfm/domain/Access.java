@@ -3,9 +3,17 @@ package com.csc.sfm.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +23,6 @@ public class Access {
   private Integer id;
   private Date creationDate;
   private Date modificationDate;
-  private User user;
   private Resource resource;
   private AccessDurationType durationType;
   private Date startDate;
@@ -27,6 +34,7 @@ public class Access {
    */
 
   @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
   @Column(name="")
   public Integer getId() {
     return id;
@@ -51,13 +59,8 @@ public class Access {
     this.modificationDate = modificationDate;
   }
 
-  public User getUser() {
-    return user;
-  }
-  public void setUser(User user) {
-    this.user = user;
-  }
-  
+  @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+  @JoinColumn(name="RESOURCE_ID")
   public Resource getResource() {
     return resource;
   }
@@ -89,6 +92,12 @@ public class Access {
     this.endDate = endDate;
   }
 
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+  @JoinTable(
+      name="T_RESTRICTIONS",
+      joinColumns = @JoinColumn( name="ACCESS_ID"),
+      inverseJoinColumns = @JoinColumn( name="ID")
+  )
   public List<Restriction> getRestrictions() {
     return restrictions;
   }

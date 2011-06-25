@@ -2,6 +2,11 @@ package com.csc.sfm.domain;
 
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("DIRECTORY")
 public class Directory extends Resource {
 
   private List<Resource> children;
