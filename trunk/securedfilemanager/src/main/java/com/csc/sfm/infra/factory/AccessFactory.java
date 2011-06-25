@@ -9,7 +9,6 @@ import com.csc.sfm.domain.Access;
 import com.csc.sfm.domain.AccessDurationType;
 import com.csc.sfm.domain.Resource;
 import com.csc.sfm.domain.Restriction;
-import com.csc.sfm.domain.User;
 
 public class AccessFactory {
 
@@ -19,16 +18,15 @@ public class AccessFactory {
 
   public Access newInstance() {
     Date creationDate = GregorianCalendar.getInstance().getTime();
-    return newInstance(null, creationDate, creationDate, null, null, AccessDurationType.PERMANENT, null, null, new ArrayList<Restriction>());
+    return newInstance(null, creationDate, creationDate, null, AccessDurationType.PERMANENT, null, null, new ArrayList<Restriction>());
   }
   
-  public Access newInstance(Integer id, Date creationDate, Date modificationDate, User user, Resource resource, AccessDurationType durationType, Date startDate, Date endDate, List<Restriction> restrictions) {
+  public Access newInstance(Integer id, Date creationDate, Date modificationDate, Resource resource, AccessDurationType durationType, Date startDate, Date endDate, List<Restriction> restrictions) {
     Access access = new Access();
     
     access.setId(id);
     access.setCreationDate(creationDate);
     access.setModificationDate(modificationDate);
-    access.setUser(user);
     access.setResource(resource);
     access.setDurationType(durationType);
     access.setStartDate(startDate);

@@ -2,15 +2,26 @@ package com.csc.sfm.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.csc.sfm.application.exception.NotYetImplementedException;
 
 @Entity
 @Table(name="T_RESOURCES")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="TYPE", discriminatorType = DiscriminatorType.STRING)
 public class Resource {
 
   private Integer id;
@@ -24,6 +35,7 @@ public class Resource {
    */
   
   @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
   @Column(name="ID")
   public Integer getId() {
     return id;
@@ -40,6 +52,8 @@ public class Resource {
     this.name = name;
   }
   
+  @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+  @JoinColumn(name="PARENT_ID")
   public Resource getParent() {
     return parent;
   }
