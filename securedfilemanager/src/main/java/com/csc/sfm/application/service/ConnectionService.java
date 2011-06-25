@@ -1,10 +1,10 @@
 package com.csc.sfm.application.service;
 
-import com.csc.sfm.application.dataprovider.UserDP;
+import com.csc.sfm.application.vo.UserVO;
 
 public interface ConnectionService {
 
-  public UserDP connect(String username, String password);
-  public void disconnect(UserDP user);
+  public UserVO connect(String username, String password);
+  public void disconnect(UserVO user);
 
 }
