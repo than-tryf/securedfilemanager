@@ -3,6 +3,14 @@ package com.csc.sfm.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="T_USERS")
 public class User {
 
   private Integer id;
@@ -18,6 +26,8 @@ public class User {
    * GETTERS & SETTERS
    */
   
+  @Id
+  @Column(name="ID")
   public Integer getId() {
     return id;
   }
@@ -25,6 +35,7 @@ public class User {
     this.id = id;
   }
 
+  @Column(name="CREATION_DATE")
   public Date getCreationDate() {
     return creationDate;
   }
@@ -32,6 +43,7 @@ public class User {
     this.creationDate = creationDate;
   }
   
+  @Column(name="MODIFICATION_DATE")
   public Date getModificationDate() {
     return modificationDate;
   }
@@ -39,6 +51,7 @@ public class User {
     this.modificationDate = modificationDate;
   }
   
+  @Column(name="USERNAME")
   public String getUsername() {
     return username;
   }
@@ -46,6 +59,7 @@ public class User {
     this.username = username;
   }
   
+  @Column(name="PASSWORD")
   public String getPassword() {
     return password;
   }
@@ -53,6 +67,7 @@ public class User {
     this.password = password;
   }
   
+  @Column(name="ACTIVATED")
   public boolean isActivated() {
     return activated;
   }
@@ -60,6 +75,7 @@ public class User {
     this.activated = activated;
   }
   
+  @Column(name="LAST_CONNECTION_DATE")
   public Date getLastConnectionDate() {
     return lastConnectionDate;
   }

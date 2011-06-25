@@ -1,5 +1,7 @@
 package com.csc.sfm.domain;
 
+import javax.persistence.Column;
+
 public class File extends Resource {
 
   private FileExtension extension;
@@ -9,6 +11,7 @@ public class File extends Resource {
    * GETTERS & SETTERS
    */
   
+  @Column(name="EXTENSION")
   public FileExtension getExtension() {
     return extension;
   }
@@ -16,6 +19,7 @@ public class File extends Resource {
     this.extension = extension;
   }
 
+  @Column(name="SIZE")
   public int getSize() {
     return size;
   }

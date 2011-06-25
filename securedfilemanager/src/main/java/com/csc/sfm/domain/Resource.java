@@ -2,8 +2,15 @@ package com.csc.sfm.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.csc.sfm.application.exception.NotYetImplementedException;
 
+@Entity
+@Table(name="T_RESOURCES")
 public class Resource {
 
   private Integer id;
@@ -16,6 +23,8 @@ public class Resource {
    * GETTERS & SETTERS
    */
   
+  @Id
+  @Column(name="ID")
   public Integer getId() {
     return id;
   }
@@ -23,6 +32,7 @@ public class Resource {
     this.id = id;
   }
 
+  @Column(name="NAME")
   public String getName() {
     return name;
   }
@@ -37,6 +47,7 @@ public class Resource {
     this.parent = parent;
   }
   
+  @Column(name="CREATION_DATE")
   public Date getCreationDate() {
     return creationDate;
   }
@@ -44,6 +55,7 @@ public class Resource {
     this.creationDate = creationDate;
   }
   
+  @Column(name="MODIFICATION_DATE")
   public Date getModificationDate() {
     return modificationDate;
   }

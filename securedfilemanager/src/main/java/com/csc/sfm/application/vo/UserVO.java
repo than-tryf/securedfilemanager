@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.csc.sfm.domain.Access;
 import com.csc.sfm.infra.util.EqualsUtil;
-import com.sun.org.apache.xpath.internal.operations.Equals;
 
 public class UserVO {
 
