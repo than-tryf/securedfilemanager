@@ -3,6 +3,8 @@ package com.csc.sfm.domain;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 @DiscriminatorValue("FILE")
@@ -15,7 +17,8 @@ public class File extends Resource {
    * GETTERS & SETTERS
    */
   
-  @Column(name="EXTENSION")
+  @Column(name="EXTENSION", length=10, nullable=true)
+  @Enumerated(EnumType.STRING)
   public FileExtension getExtension() {
     return extension;
   }

@@ -27,11 +27,11 @@ public class AccessFactory {
     access.setId(id);
     access.setCreationDate(creationDate);
     access.setModificationDate(modificationDate);
-    access.setResource(resource);
+//    access.setResource(resource);
     access.setDurationType(durationType);
     access.setStartDate(startDate);
     access.setEndDate(endDate);
-    access.setRestrictions(restrictions);
+//    access.setRestrictions(restrictions);
     
     return access;
   }

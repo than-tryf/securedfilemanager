@@ -2,10 +2,15 @@ package com.csc.sfm.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
-@Entity
+//@Entity
 @DiscriminatorValue("DIRECTORY")
 public class Directory extends Resource {
 
@@ -15,6 +20,12 @@ public class Directory extends Resource {
    * GETTERS & SETTERS
    */
   
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+  @JoinTable(
+      name="T_RESOURCES",
+      joinColumns = @JoinColumn( name="RESOURCE_ID"),
+      inverseJoinColumns = @JoinColumn( name="ID")
+  )
   public List<Resource> getChildren() {
     return children;
   }

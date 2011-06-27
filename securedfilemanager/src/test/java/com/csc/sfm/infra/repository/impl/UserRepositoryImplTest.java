@@ -20,6 +20,10 @@ public class UserRepositoryImplTest {
   @Qualifier("userRepository")
   private UserRepository underTest;
 
+  /*
+   * getByUsername
+   */
+  
   @Test
   public void getByUsername_withMatchingUser_isOK() {
     User actual = underTest.getByUsername("jeremy");
@@ -32,9 +36,7 @@ public class UserRepositoryImplTest {
   @Test
   public void getByUsername_withUngoundUser_isOK() {
     User actual = underTest.getByUsername("XXX");
-    Assert.assertNotNull(actual);
-    Assert.assertEquals("jeremy", actual.getUsername());
-    Assert.assertEquals("1", actual.getPassword());
-    Assert.assertEquals(true, actual.isActivated());
+    Assert.assertNull(actual);
   }
+  
 }
