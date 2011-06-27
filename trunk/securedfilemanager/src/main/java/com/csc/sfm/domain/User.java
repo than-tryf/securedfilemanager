@@ -12,12 +12,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
 @Table(name="T_USERS")
+@NamedQuery(name="findUsersByUsername", query="SELECT u FROM User u WHERE u.username = :username")
 public class User {
 
   private Integer id;
@@ -43,7 +47,8 @@ public class User {
     this.id = id;
   }
 
-  @Column(name="CREATION_DATE")
+  @Column(name="CREATION_DATE", nullable=true)
+  @Temporal(TemporalType.TIMESTAMP)
   public Date getCreationDate() {
     return creationDate;
   }
@@ -51,7 +56,8 @@ public class User {
     this.creationDate = creationDate;
   }
   
-  @Column(name="MODIFICATION_DATE")
+  @Column(name="MODIFICATION_DATE", nullable=true)
+  @Temporal(TemporalType.TIMESTAMP)
   public Date getModificationDate() {
     return modificationDate;
   }
@@ -59,7 +65,7 @@ public class User {
     this.modificationDate = modificationDate;
   }
   
-  @Column(name="USERNAME")
+  @Column(name="USERNAME", length=30, nullable=false)
   public String getUsername() {
     return username;
   }
@@ -67,7 +73,7 @@ public class User {
     this.username = username;
   }
   
-  @Column(name="PASSWORD")
+  @Column(name="PASSWORD", length=30, nullable=false)
   public String getPassword() {
     return password;
   }
@@ -75,7 +81,7 @@ public class User {
     this.password = password;
   }
   
-  @Column(name="ACTIVATED")
+  @Column(name="ACTIVATED", nullable=false)
   public boolean isActivated() {
     return activated;
   }
@@ -83,7 +89,8 @@ public class User {
     this.activated = activated;
   }
   
-  @Column(name="LAST_CONNECTION_DATE")
+  @Column(name="LAST_CONNECTION_DATE", nullable=true)
+  @Temporal(TemporalType.TIMESTAMP)
   public Date getLastConnectionDate() {
     return lastConnectionDate;
   }
@@ -91,7 +98,7 @@ public class User {
     this.lastConnectionDate = lastConnectionDate;
   }
   
-  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
   @JoinTable(
       name="T_ACCESSES",
       joinColumns = @JoinColumn( name="USER_ID"),
@@ -107,7 +114,7 @@ public class User {
   /*
    * PUBLIC
    */
-  
+    
   /*
    * PRIVATE
    */

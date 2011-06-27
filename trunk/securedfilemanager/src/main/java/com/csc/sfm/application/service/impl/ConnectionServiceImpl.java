@@ -1,5 +1,7 @@
 package com.csc.sfm.application.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.csc.sfm.application.exception.NotYetImplementedException;
 import com.csc.sfm.application.service.ConnectionService;
 import com.csc.sfm.application.vo.UserVO;
@@ -7,6 +9,7 @@ import com.csc.sfm.infra.repository.UserRepository;
 
 public class ConnectionServiceImpl implements ConnectionService {
 
+  @Autowired
   private UserRepository userRepository;
   
   /*

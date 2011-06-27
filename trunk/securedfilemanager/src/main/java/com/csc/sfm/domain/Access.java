@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="T_ACCESSES")
@@ -43,7 +48,8 @@ public class Access {
     this.id = id;
   }
   
-  @Column(name="CREATION_DATE")
+  @Column(name="CREATION_DATE", nullable=true)
+  @Temporal(TemporalType.TIMESTAMP)
   public Date getCreationDate() {
     return creationDate;
   }
@@ -51,7 +57,8 @@ public class Access {
     this.creationDate = creationDate;
   }
 
-  @Column(name="MODIFICATION_DATE")
+  @Column(name="MODIFICATION_DATE", nullable=true)
+  @Temporal(TemporalType.TIMESTAMP)
   public Date getModificationDate() {
     return modificationDate;
   }
@@ -59,8 +66,9 @@ public class Access {
     this.modificationDate = modificationDate;
   }
 
+  @Transient
   @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-  @JoinColumn(name="RESOURCE_ID")
+  @JoinColumn(name="RESOURCE_ID", nullable=false)
   public Resource getResource() {
     return resource;
   }
@@ -68,7 +76,8 @@ public class Access {
     this.resource = resource;
   }
   
-  @Column(name="DURATION_TYPE")
+  @Column(name="DURATION_TYPE", nullable=false)
+  @Enumerated(EnumType.ORDINAL)
   public AccessDurationType getDurationType() {
     return durationType;
   }
@@ -76,7 +85,8 @@ public class Access {
     this.durationType = durationType;
   }
   
-  @Column(name="START_DATE")
+  @Column(name="START_DATE", nullable=true)
+  @Temporal(TemporalType.TIMESTAMP)
   public Date getStartDate() {
     return startDate;
   }
@@ -84,7 +94,8 @@ public class Access {
     this.startDate = startDate;
   }
   
-  @Column(name="END_DATE")
+  @Column(name="END_DATE", nullable=true)
+  @Temporal(TemporalType.TIMESTAMP)
   public Date getEndDate() {
     return endDate;
   }
@@ -92,7 +103,7 @@ public class Access {
     this.endDate = endDate;
   }
 
-  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+  @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
   @JoinTable(
       name="T_RESTRICTIONS",
       joinColumns = @JoinColumn( name="ACCESS_ID"),

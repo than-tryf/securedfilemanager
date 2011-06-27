@@ -1,5 +1,5 @@
 package com.csc.sfm.infra.repository;
 
-public interface RestrictionRespository {
+public interface RestrictionRepository {
 
 }

@@ -1,50 +1,96 @@
 package com.csc.sfm.infra.repository.impl;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-import com.csc.sfm.application.exception.NotYetImplementedException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.csc.sfm.domain.User;
 import com.csc.sfm.infra.repository.UserRepository;
 
 @Repository("userRepository")
-public class UserRepositoryImpl extends HibernateDaoSupport implements UserRepository {
+@Transactional
+public class UserRepositoryImpl implements UserRepository {
 
-  public UserRepositoryImpl() {
-    // Null constructor
+  private EntityManagerFactory emf;
+
+  @PersistenceUnit
+  public void setEntityManagerFactory(EntityManagerFactory emf) {
+      this.emf = emf;
   }
   
-  /*
-   * HibernateDaoSupport requires a SessionFactory or an HibernateTemplate bean property.
-   * The session factory is passed using the @qualifier annotation in the constructor because the method 
-   * setSessionFactory(SessionFactory sessionFactory) in HibernateDaoSupport is declared as "final".
-   * So it cannot been override.
-   */
-  @Autowired
-  public UserRepositoryImpl(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
-    super.setSessionFactory(sessionFactory);
+  public User getById(int id) {
+    User result = null;
+    
+    EntityManager em = emf.createEntityManager();
+    try {
+      result = em.find(User.class, id);
+    } finally {
+      if (em != null) {
+        em.close();
+      }
+    }
+    return result;
   }
   
-  @Override
+  @SuppressWarnings("unchecked")
   public User getByUsername(String username) {
-    throw new NotYetImplementedException();
+    User result = null;
+    
+    EntityManager em = emf.createEntityManager();
+    try {
+      Query query = em.createNamedQuery("findUsersByUsername", User.class);
+      query.setParameter("username", username);
+      List<User> matchingUsers = query.getResultList();
+      if (!matchingUsers.isEmpty()) {
+        result = matchingUsers.get(0);
+      }
+    } finally {
+      if (em != null) {
+        em.close();
+      }
+    }
+    return result;
   }
 
-  @Override
   public void save(User user) {
-    super.getHibernateTemplate().save(user);
+    EntityManager em = emf.createEntityManager();
+    try {
+      em.persist(user);
+      em.flush();
+    } finally {
+      if (em != null) {
+        em.close();
+      }
+    }
   }
 
-  @Override
   public void update(User user) {
-    super.getHibernateTemplate().update(user);
+    EntityManager em = emf.createEntityManager();
+    try {
+      em.merge(user);
+      em.flush();
+    } finally {
+      if (em != null) {
+        em.close();
+      }
+    }
   }
 
-  @Override
   public void delete(User user) {
-    super.getHibernateTemplate().delete(user);
+    EntityManager em = emf.createEntityManager();
+    try {
+      em.remove(user);
+      em.flush();
+    } finally {
+      if (em != null) {
+        em.close();
+      }
+    }
   }
 }
