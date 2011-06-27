@@ -9,9 +9,6 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -24,9 +21,8 @@ import javax.persistence.TemporalType;
 @Table(name="T_RESOURCES")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE", discriminatorType=DiscriminatorType.STRING, length=10)
-public abstract class Resource {
+public abstract class Resource extends AbstractEntity {
 
-  private Integer id;
   private Date creationDate;
   private Date modificationDate;
   private ResourceType type;
@@ -37,16 +33,6 @@ public abstract class Resource {
    * GETTERS & SETTERS
    */
   
-  @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  @Column(name="ID")
-  public Integer getId() {
-    return id;
-  }
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
   @Column(name="CREATION_DATE", nullable=true)
   @Temporal(TemporalType.TIMESTAMP)
   public Date getCreationDate() {

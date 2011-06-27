@@ -5,21 +5,43 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.csc.sfm.domain.Access;
 import com.csc.sfm.domain.User;
 
+@Component
+@Scope("singleton")
 public class UserFactory {
 
+//  /*
+//   * SINGLETON
+//   */
+//  
+//  private UserFactory() {
+//    super();
+//  }
+//  
+//  private static UserFactory instance;
+//  
+//  public static UserFactory getInstance() {
+//    if (instance == null) {
+//      instance = new UserFactory();
+//    }
+//    return instance;
+//  }
+  
   /*
    * PUBLIC
    */
 
-  public User newInstance() {
+  public User createUser() {
     Date creationDate = GregorianCalendar.getInstance().getTime();
-    return newInstance(null, "", "", creationDate, creationDate, false, null, new ArrayList<Access>());
+    return createUser(null, "", "", creationDate, creationDate, false, null, new ArrayList<Access>());
   }
 
-  public User newInstance(Integer id, String userName, String password, Date creationDate, Date modificationDate, 
+  public User createUser(Integer id, String userName, String password, Date creationDate, Date modificationDate, 
       boolean activated, Date lastConnectionDate, List<Access> accesses) {
     User user = new User();
     
