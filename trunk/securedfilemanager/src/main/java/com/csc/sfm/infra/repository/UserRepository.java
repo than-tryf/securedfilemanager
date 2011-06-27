@@ -1,14 +1,12 @@
 package com.csc.sfm.infra.repository;
 
+import java.util.List;
+
 import com.csc.sfm.domain.User;
 
-public interface UserRepository {
+public interface UserRepository extends AbstractEntityRepository<User> {
 
-  public void save(User user);
-  public void update(User user);
-  public void delete(User user);
-
-  public User getById(int id);
   public User getByUsername(String username);
+  public List<User> findAllUsers();
 
 }

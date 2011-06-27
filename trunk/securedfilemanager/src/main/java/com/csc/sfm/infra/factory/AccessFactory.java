@@ -5,11 +5,16 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.csc.sfm.domain.Access;
 import com.csc.sfm.domain.AccessDurationType;
 import com.csc.sfm.domain.Resource;
 import com.csc.sfm.domain.Restriction;
 
+@Component
+@Scope("singleton")
 public class AccessFactory {
 
   /*
@@ -27,11 +32,11 @@ public class AccessFactory {
     access.setId(id);
     access.setCreationDate(creationDate);
     access.setModificationDate(modificationDate);
-//    access.setResource(resource);
+    access.setResource(resource);
     access.setDurationType(durationType);
     access.setStartDate(startDate);
     access.setEndDate(endDate);
-//    access.setRestrictions(restrictions);
+    access.setRestrictions(restrictions);
     
     return access;
   }

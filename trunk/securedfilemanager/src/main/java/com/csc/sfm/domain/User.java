@@ -7,11 +7,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,10 +19,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="T_USERS")
-@NamedQuery(name="findUsersByUsername", query="SELECT u FROM User u WHERE u.username = :username")
-public class User {
+@NamedQueries({
+  @NamedQuery(name="findUsersByUsername", query="SELECT u FROM User u WHERE u.username = :username"),
+  @NamedQuery(name="findAllUsers", query="SELECT u FROM User u")
+})
+public class User extends AbstractEntity {
 
-  private Integer id;
   private Date creationDate;
   private Date modificationDate;
   private String username;
@@ -37,16 +37,6 @@ public class User {
    * GETTERS & SETTERS
    */
   
-  @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  @Column(name="ID")
-  public Integer getId() {
-    return id;
-  }
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
   @Column(name="CREATION_DATE", nullable=true)
   @Temporal(TemporalType.TIMESTAMP)
   public Date getCreationDate() {

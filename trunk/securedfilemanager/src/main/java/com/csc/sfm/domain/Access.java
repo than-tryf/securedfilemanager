@@ -9,9 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
@@ -23,9 +20,8 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name="T_ACCESSES")
-public class Access {
+public class Access extends AbstractEntity {
 
-  private Integer id;
   private Date creationDate;
   private Date modificationDate;
   private Resource resource;
@@ -38,15 +34,6 @@ public class Access {
    * GETTERS & SETTERS
    */
 
-  @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  @Column(name="")
-  public Integer getId() {
-    return id;
-  }
-  public void setId(Integer id) {
-    this.id = id;
-  }
   
   @Column(name="CREATION_DATE", nullable=true)
   @Temporal(TemporalType.TIMESTAMP)
