@@ -73,6 +73,10 @@ public class ResourceServiceImplTest {
   }
 
   /*
+   * getNextDomainFromBeginning
+   */
+  
+  /*
    * PRIVATE
    */
   public void assert_getResource_withValidUrl_isOk(String url) {
