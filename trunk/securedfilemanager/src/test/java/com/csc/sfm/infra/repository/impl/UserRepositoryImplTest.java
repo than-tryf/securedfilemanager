@@ -23,7 +23,6 @@ import com.csc.sfm.infra.repository.UserRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring/application-context.xml"})
-@Transactional("transactionManager")
 public class UserRepositoryImplTest extends AbstractTransactionalJUnit4SpringContextTests {
 
   @Autowired
