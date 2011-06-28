@@ -4,7 +4,9 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractEntityRepositoryImpl<E> {
+import com.csc.sfm.infra.repository.AbstractEntityRepository;
+
+public abstract class AbstractEntityRepositoryImpl<E> implements AbstractEntityRepository<E> {
 
   @Autowired
   protected EntityManager em;

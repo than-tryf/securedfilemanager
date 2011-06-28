@@ -1,9 +1,12 @@
 package com.csc.sfm.infra.repository.impl;
 
-import com.csc.sfm.domain.Access;
 import com.csc.sfm.domain.Resource;
-import com.csc.sfm.infra.repository.AccessRepository;
+import com.csc.sfm.infra.repository.ResourceRepository;
 
-public class ResourceRepositoryImpl extends AbstractEntityRepositoryImpl<Resource> implements AccessRepository {
+public class ResourceRepositoryImpl extends AbstractEntityRepositoryImpl<Resource> implements ResourceRepository {
+
+  public Resource getById(int id) {
+    return em.find(Resource.class, id);
+  }
 
 }

@@ -8,6 +8,7 @@ import com.csc.sfm.domain.Directory;
 import com.csc.sfm.domain.File;
 import com.csc.sfm.domain.FileExtension;
 import com.csc.sfm.domain.Resource;
+import com.csc.sfm.domain.ResourceAccessibility;
 
 public class ResourceFactory {
 
@@ -20,7 +21,7 @@ public class ResourceFactory {
     
     Date creationDate = GregorianCalendar.getInstance().getTime();
     
-    initializeInstance(directory, null, "", null, creationDate, creationDate);
+    initializeInstance(directory, null, "", ResourceAccessibility.OPEN, null, creationDate, creationDate);
     
     directory.setChildren(new ArrayList<Resource>());
     
@@ -32,7 +33,7 @@ public class ResourceFactory {
     
     Date creationDate = GregorianCalendar.getInstance().getTime();
     
-    initializeInstance(file, null, "", null, creationDate, creationDate);
+    initializeInstance(file, null, "", ResourceAccessibility.OPEN, null, creationDate, creationDate);
     
     file.setExtension(FileExtension.OTHER);
     file.setSize(0);
@@ -40,9 +41,10 @@ public class ResourceFactory {
     return file;
   }
   
-  private void initializeInstance(Resource resource, Integer id, String name, Resource parent, Date creationDate, Date modificationDate) {
+  private void initializeInstance(Resource resource, Integer id, String name, ResourceAccessibility accesibility, Resource parent, Date creationDate, Date modificationDate) {
     resource.setId(id);
     resource.setName(name);
+    resource.setAccessibility(accesibility);
     resource.setParent(parent);
     resource.setCreationDate(creationDate);
     resource.setModificationDate(modificationDate);
