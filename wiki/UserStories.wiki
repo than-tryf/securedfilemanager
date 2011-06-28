@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 #labels Featured
 
-== Sprint 1 `-` Mettre en place la navigation avec Access Filtering de niveau 1 (AF`-`1) ==
+== Sprint 1 `-` Mettre en place la navigation des Resources avec Access Filtering de niveau 1 (AF`-`1) ==
   * *Administration* Afficher les Ressources
   * *Administration* Ajouter une Ressource
   * *Administration* Modifier une Ressource
