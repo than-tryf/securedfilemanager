@@ -27,6 +27,7 @@ public abstract class Resource extends AbstractEntity {
   private Date modificationDate;
   private ResourceType type;
   private String name;
+  private ResourceAccessibility accesibility;
   private Resource parent;
   
   /*
@@ -68,6 +69,15 @@ public abstract class Resource extends AbstractEntity {
     this.name = name;
   }
   
+  @Column(name="ACCESSIBILITY", nullable=false, insertable=false, updatable=false)
+  @Enumerated(EnumType.STRING)
+  public ResourceAccessibility getAccessibility() {
+    return accesibility;
+  }
+  public void setAccessibility(ResourceAccessibility accesibility) {
+    this.accesibility = accesibility;
+  }
+
   @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
   @JoinColumn(name="PARENT_ID", nullable=true)
   public Resource getParent() {
