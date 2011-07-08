@@ -17,7 +17,7 @@ import com.csc.sfm.server.application.service.ResourceService;
 import com.csc.sfm.server.domain.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:spring/application-context.xml"})
+@ContextConfiguration(locations={"classpath:spring/applicationContext.xml"})
 public class ResourceServiceImplTest {
 
   @Autowired

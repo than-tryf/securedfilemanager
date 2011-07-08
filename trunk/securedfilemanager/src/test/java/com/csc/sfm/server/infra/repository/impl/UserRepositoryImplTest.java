@@ -22,7 +22,7 @@ import com.csc.sfm.server.infra.factory.UserFactory;
 import com.csc.sfm.server.infra.repository.UserRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:spring/application-context.xml"})
+@ContextConfiguration(locations={"classpath:spring/applicationContext.xml"})
 public class UserRepositoryImplTest extends AbstractTransactionalJUnit4SpringContextTests {
 
   @Autowired
