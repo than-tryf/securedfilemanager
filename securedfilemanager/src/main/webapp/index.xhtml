@@ -22,11 +22,12 @@
     <div id="blueBar" >
       <div id="globalContainer">
         <div id="globalHeader">
-          <span id="globalHeaderTitle">Title</span>
-          <form action="#" method="get">
+          <span id="globalHeaderTitle">#{welcomeBean.message}</span>
+          <form id="searchForm" action="#" method="get">
             <div id="globalHeaderSearch">
               <input id="globalHeaderSearchInput" type="text" name="searchRequest" />
-              <input id="globalHeaderSearchButton" type="submit" value="Search" />
+<!--               <input id="globalHeaderSearchButton" type="submit" /> -->
+              <a id="globalHeaderSearchButton" onclick="this.searchForm.submit"/>
             </div>
           </form>
         </div>

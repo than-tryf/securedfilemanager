@@ -3,7 +3,7 @@ package com.csc.sfm.client.beans;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean(name = "welcomeBean", eager = true)
+@ManagedBean(name="welcomeBean", eager=true)
 @SessionScoped
 public class WelcomeBean {
 
