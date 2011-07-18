@@ -4,21 +4,21 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.csc.sfm.server.infra.repository.AbstractEntityRepository;
-
-public abstract class AbstractEntityRepositoryImpl<E> implements AbstractEntityRepository<E> {
+public abstract class AbstractEntityRepositoryImpl<E> {
 
   @Autowired
   protected EntityManager em;
 
-  public void save(E entity) {
+  public E save(E entity) {
     em.persist(entity);
     em.flush();
+    return entity;
   }
 
-  public void update(E entity) {
+  public E update(E entity) {
     em.merge(entity);
     em.flush();
+    return entity;
   }
 
   public void delete(E entity) {

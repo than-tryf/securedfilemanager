@@ -9,7 +9,7 @@
 
   <h:head profile="http://gmpg.org/xfn/11">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Secured File Manager</title>
+    <title> Ctrl + Shif + C</title>
 
     <style type="text/css">
       @IMPORT url("style/style.css");
@@ -27,7 +27,7 @@
             <div id="globalHeaderSearch">
               <input id="globalHeaderSearchInput" type="text" name="searchRequest" />
               <div id="globalHeaderSearchButtonContainer">
-                <input id="globalHeaderSearchButton" type="submit" value=" " />
+                <input id="globalHeaderSearchButton" type="submit" value="" />
               </div>
             </div>
           </form>
@@ -37,7 +37,7 @@
             <div id="resourcesHeader">
               <span id="resourcesTitle">/public/works/</span>
             </div>
-<!--           <div id="resourcesContent">
+            <div id="resourcesContent">
               <table id="resourcesDatagrid">
                 <tr><th id="resourceNameHeader">Name</th><th id="resourceSizeHeader">Size</th><th id="resourceModificationDateHeader">Last modification</th><th id="resourceDescriptionHeader">Description</th></tr>
                 <tr><td><span class="parent"><a href="#">..</a></span></td><td/><td/></tr>
@@ -46,37 +46,25 @@
                 <tr><td><span class="file"><a href="#">tata.txt</a></span></td><td class="resourceRowData">102 ko</td><td class="resourceRowData">10-05-2011:13h26</td></tr>
                 <tr><td><span class="file"><a href="#">toto.xml</a></span></td><td class="resourceRowData">1,3 mo</td><td class="resourceRowData">07-07-2011:12h50</td></tr>
               </table>
-            </div>-->
-            <div id="resourcesContent">
-               <h:dataTable id="resourcesDatagrid" value="#{explorerController.resources}"  var="item" 
-                            columnClasses="resourceNameColumn, resourceSizeColumn, resourceModificationDateColumn, resourceDescriptionColumn">
-                 <h:column id="nameColumn">
-                   <f:facet name="header">
-                   <h:outputText value="Name" />
-                   </f:facet>
-                   <h:outputText value="#{item.name}" styleClass="#{item.nameStyle}" />
-                 </h:column>
-                 <h:column id="sizeColumn">
-                   <f:facet name="header">
-                    <h:outputText value="Size" />
-                   </f:facet>
-                   <h:outputText value="#{item.size}" />
-                 </h:column>
-                 <h:column id="modificationDateColumn">
-                   <f:facet name="header">
-                   <h:outputText value="Modification date" />
-                   </f:facet>
-                   <h:outputText value="#{item.modificationDate}" />
-                 </h:column>
-                 <h:column id="descriptionColumn">
-                   <f:facet name="header">
-                   <h:outputText value="Description" />
-                   </f:facet>
-                   <h:outputText value="" />
-                 </h:column>
-               </h:dataTable>
             </div>
           </div>
+
+<h:form>
+  <h:dataTable value="#{resourcesBean.resources}"  var="item">
+    <h:column>
+      <f:facet name="header">
+      <h:outputText value="Name" />
+      </f:facet>
+      <h:outputText value="#{item.name}" />
+    </h:column>
+    <h:column>
+      <f:facet name="header">
+      <h:outputText value="Modification date" />
+      </f:facet>
+      <h:outputText value="#{item.modificationDate}" />
+    </h:column>
+  </h:dataTable>
+</h:form>
         </div>
         <div id="globalFooter">
           <span id="globalFooterGenerationMetadata">Generated in 0.135s</span>

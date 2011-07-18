@@ -1,6 +1,6 @@
 package com.csc.sfm.server.application.service;
 
-import com.csc.sfm.shared.bean.UserVO;
+import com.csc.sfm.shared.vo.UserVO;
 
 public interface ConnectionService {
 

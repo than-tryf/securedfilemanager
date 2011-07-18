@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.csc.sfm.server.application.exception.NotYetImplementedException;
 import com.csc.sfm.server.application.service.ConnectionService;
 import com.csc.sfm.server.infra.repository.UserRepository;
-import com.csc.sfm.shared.bean.UserVO;
+import com.csc.sfm.shared.vo.UserVO;
 
 public class ConnectionServiceImpl implements ConnectionService {
 

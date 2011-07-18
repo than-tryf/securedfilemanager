@@ -1,5 +1,7 @@
 package com.csc.sfm.server.infra.repository;
 
-public interface AccessRepository {
+import com.csc.sfm.server.domain.Access;
+
+public interface AccessRepository extends EntityRepository<Access> {
 
 }
