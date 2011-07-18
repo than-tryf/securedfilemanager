@@ -12,7 +12,8 @@ import com.csc.sfm.server.infra.repository.UserRepository;
 @Repository("userRepository")
 public class UserRepositoryImpl extends AbstractEntityRepositoryImpl<User> implements UserRepository {
 
-  public User getById(int id) {
+	@Override
+  public User get(Integer id) {
     return em.find(User.class, id);
   }
   
@@ -32,8 +33,15 @@ public class UserRepositoryImpl extends AbstractEntityRepositoryImpl<User> imple
   }
   
   @SuppressWarnings("unchecked")
-  public List<User> findAllUsers() {
+	@Override
+  public List<User> list() {
     return em.createNamedQuery("findAllUsers").getResultList();
   }
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

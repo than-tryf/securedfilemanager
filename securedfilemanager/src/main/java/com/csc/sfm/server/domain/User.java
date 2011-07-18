@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 @Table(name="T_USERS")
 @NamedQueries({
   @NamedQuery(name="findUsersByUsername", query="SELECT u FROM User u WHERE u.username = :username"),
-  @NamedQuery(name="findAllUsers", query="SELECT u FROM User u")
+  @NamedQuery(name="listUsers", query="SELECT u FROM User u")
 })
 public class User extends AbstractEntity {
 

@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.csc.sfm.server.application.exception.ResourceForbiddenException;
 import com.csc.sfm.server.application.exception.ResourceNotFoundException;
 import com.csc.sfm.server.application.service.ResourceService;
-import com.csc.sfm.server.domain.Resource;
+import com.csc.sfm.shared.vo.ResourceVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring/applicationContext.xml"})
@@ -84,7 +84,7 @@ public class ResourceServiceImplTest {
     
     try {
       // When
-      Resource actual = underTest.getResource(url);
+      ResourceVO actual = underTest.getResource(url);
       
       // Then
       assertNotNull(actual);

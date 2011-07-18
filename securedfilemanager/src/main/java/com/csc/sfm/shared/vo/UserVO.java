@@ -1,4 +1,4 @@
-package com.csc.sfm.shared.bean;
+package com.csc.sfm.shared.vo;
 
 import java.util.Date;
 import java.util.List;

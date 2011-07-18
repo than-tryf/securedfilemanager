@@ -13,12 +13,19 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="T_RESOURCES")
+@NamedQueries({
+  @NamedQuery(name="findRootResources", query="SELECT r FROM Resource r WHERE r.parent IS NULL"),
+  @NamedQuery(name="listResources", query="SELECT r FROM Resource r")
+})
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE", discriminatorType=DiscriminatorType.STRING, length=10)
 public abstract class Resource extends AbstractEntity {
@@ -27,7 +34,7 @@ public abstract class Resource extends AbstractEntity {
   private Date modificationDate;
   private ResourceType type;
   private String name;
-  private ResourceAccessibility accesibility;
+  private ResourceAccessibility accessibility;
   private Resource parent;
   
   /*
@@ -72,10 +79,10 @@ public abstract class Resource extends AbstractEntity {
   @Column(name="ACCESSIBILITY", nullable=false, insertable=false, updatable=false)
   @Enumerated(EnumType.STRING)
   public ResourceAccessibility getAccessibility() {
-    return accesibility;
+    return accessibility;
   }
-  public void setAccessibility(ResourceAccessibility accesibility) {
-    this.accesibility = accesibility;
+  public void setAccessibility(ResourceAccessibility accessibility) {
+    this.accessibility = accessibility;
   }
 
   @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
@@ -90,7 +97,16 @@ public abstract class Resource extends AbstractEntity {
   /*
    * PUBLIC
    */
-    
+  
+  @Transient
+  public String getPath() {
+  	String result = "";
+  	if (parent != null) {
+  		result = parent.getPath() + name;
+  	}
+  	return result;
+  }
+  
   /*
    * PRIVATE
    */

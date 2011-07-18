@@ -36,7 +36,7 @@ public class UserRepositoryImplTest extends AbstractTransactionalJUnit4SpringCon
    */
   @Test
   public void getById_withMatchingUser_isOK() {
-    User actual = underTest.getById(1);
+    User actual = underTest.get(1);
     assertNotNull(actual);
     assertEquals("jeremy", actual.getUsername());
     assertEquals("1", actual.getPassword());
@@ -70,7 +70,7 @@ public class UserRepositoryImplTest extends AbstractTransactionalJUnit4SpringCon
   @Transactional
   public void save_inexistantUser_isOK() {
     // Preparation
-    List<User> initialListOfUsers = underTest.findAllUsers();
+    List<User> initialListOfUsers = underTest.list();
     int initialCount = initialListOfUsers.size();
     
     // Execution
@@ -78,7 +78,7 @@ public class UserRepositoryImplTest extends AbstractTransactionalJUnit4SpringCon
     underTest.save(user);
     
     // Validation
-    List<User> actualListOfUsers = underTest.findAllUsers();
+    List<User> actualListOfUsers = underTest.list();
     int actualCount = actualListOfUsers.size();
 
     assertEquals(initialCount + 1, actualCount);

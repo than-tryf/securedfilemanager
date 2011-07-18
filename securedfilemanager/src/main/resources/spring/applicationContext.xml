@@ -11,6 +11,6 @@
 
   <context:annotation-config/>
 
-  <import resource="classpath:spring/persistence-context.xml"/>
+  <import resource="classpath:spring/applicationContext-persistence.xml"/>
 
 </beans>
