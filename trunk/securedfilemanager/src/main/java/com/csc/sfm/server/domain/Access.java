@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name="T_ACCESSES")
-public class Access extends AbstractEntity {
+public class Access extends BaseEntity {
 
   private Date creationDate;
   private Date modificationDate;

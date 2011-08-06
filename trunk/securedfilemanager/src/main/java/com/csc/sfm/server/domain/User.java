@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
   @NamedQuery(name="findUsersByUsername", query="SELECT u FROM User u WHERE u.username = :username"),
   @NamedQuery(name="listUsers", query="SELECT u FROM User u")
 })
-public class User extends AbstractEntity {
+public class User extends BaseEntity {
 
   private Date creationDate;
   private Date modificationDate;

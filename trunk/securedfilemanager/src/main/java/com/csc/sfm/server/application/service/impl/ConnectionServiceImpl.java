@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.csc.sfm.server.application.exception.NotYetImplementedException;
 import com.csc.sfm.server.application.service.ConnectionService;
+import com.csc.sfm.server.domain.User;
 import com.csc.sfm.server.infra.repository.UserRepository;
-import com.csc.sfm.shared.vo.UserVO;
 
 public class ConnectionServiceImpl implements ConnectionService {
 
@@ -17,13 +17,13 @@ public class ConnectionServiceImpl implements ConnectionService {
    */
 
   @Override
-  public UserVO connect(String username, String password) {
+  public User connect(String username, String password) {
     // TODO
     throw new NotYetImplementedException();
   }
 
   @Override
-  public void disconnect(UserVO user) {
+  public void disconnect(User user) {
     // TODO
     throw new NotYetImplementedException();
   }

@@ -147,19 +147,19 @@
         color: blue;
       }
 
-      #resourcesDatagrid span.parent {
+      #resourcesDatagrid a.parent {
         background-image: url(images/parent.gif);
       }
 
-      #resourcesDatagrid span.directory {
+      #resourcesDatagrid a.directory {
         background-image: url(images/folder.gif);
       }
       
-      #resourcesDatagrid span.file {
+      #resourcesDatagrid a.file {
         background-image: url(images/file.gif);
       }
 
-      #resourcesDatagrid span.parent, #resourcesDatagrid span.directory, #resourcesDatagrid span.file {
+      #resourcesDatagrid a.parent, #resourcesDatagrid a.directory, #resourcesDatagrid a.file {
         background-color: transparent;
         background-repeat: no-repeat;
         background-position: left center;
@@ -177,7 +177,7 @@
       }
       
       .resourceSizeColumn {
-        width: 20px;
+        width: 100px;
         text-align: right;
       }
       

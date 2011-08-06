@@ -10,7 +10,7 @@ import com.csc.sfm.server.domain.User;
 import com.csc.sfm.server.infra.repository.UserRepository;
 
 @Repository("userRepository")
-public class UserRepositoryImpl extends AbstractEntityRepositoryImpl<User> implements UserRepository {
+public class UserRepositoryImpl extends BaseEntityRepositoryImpl<User> implements UserRepository {
 
 	@Override
   public User get(Integer id) {

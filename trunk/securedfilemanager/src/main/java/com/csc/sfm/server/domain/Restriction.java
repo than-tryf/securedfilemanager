@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="T_RESTRICTIONS")
-public class Restriction extends AbstractEntity {
+public class Restriction extends BaseEntity {
 
   private Resource resource;
 

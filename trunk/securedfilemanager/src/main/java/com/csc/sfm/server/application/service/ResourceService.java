@@ -1,11 +1,13 @@
 package com.csc.sfm.server.application.service;
 
-import com.csc.sfm.server.application.exception.ResourceForbiddenException;
-import com.csc.sfm.server.application.exception.ResourceNotFoundException;
-import com.csc.sfm.shared.vo.ResourceVO;
+import java.util.List;
+
+import com.csc.sfm.server.domain.Resource;
 
 public interface ResourceService {
 
-  public ResourceVO getResource(String url) throws ResourceNotFoundException, ResourceForbiddenException;
+	public List<Resource> getRootResources();
+	
+  public Resource getResource(Integer id);
 
 }
