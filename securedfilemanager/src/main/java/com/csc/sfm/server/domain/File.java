@@ -11,7 +11,7 @@ import javax.persistence.Enumerated;
 public class File extends Resource {
 
   private FileExtension extension;
-  private int size;
+  private double size;
   
   /*
    * GETTERS & SETTERS
@@ -27,10 +27,10 @@ public class File extends Resource {
   }
 
   @Column(name="SIZE")
-  public int getSize() {
+  public double getSize() {
     return size;
   }
-  public void setSize(int size) {
+  public void setSize(double size) {
     this.size = size;
   }
   

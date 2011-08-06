@@ -54,7 +54,7 @@ public class ResourceRepositoryMock implements ResourceRepository, Serializable 
 		fileTata.setParent(null);
 		fileTata.setAccessibility(ResourceAccessibility.OPEN);
 		fileTata.setExtension(FileExtension.TXT);
-		fileTata.setSize(15);
+		fileTata.setSize(2097152);
 		save(fileTata);
 	}
 	
@@ -124,4 +124,10 @@ public class ResourceRepositoryMock implements ResourceRepository, Serializable 
 			}
 		}
   }
+
+	@Override
+	public Resource getResource(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

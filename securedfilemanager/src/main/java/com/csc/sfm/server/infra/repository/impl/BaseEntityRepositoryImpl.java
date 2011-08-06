@@ -1,12 +1,11 @@
 package com.csc.sfm.server.infra.repository.impl;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
+public abstract class BaseEntityRepositoryImpl<E> {
 
-public abstract class AbstractEntityRepositoryImpl<E> {
-
-  @Autowired
+  @PersistenceContext
   protected EntityManager em;
 
   public E save(E entity) {

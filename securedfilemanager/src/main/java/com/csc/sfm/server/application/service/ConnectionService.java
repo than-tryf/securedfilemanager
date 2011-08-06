@@ -1,10 +1,10 @@
 package com.csc.sfm.server.application.service;
 
-import com.csc.sfm.shared.vo.UserVO;
+import com.csc.sfm.server.domain.User;
 
 public interface ConnectionService {
 
-  public UserVO connect(String username, String password);
-  public void disconnect(UserVO user);
+  public User connect(String username, String password);
+  public void disconnect(User user);
 
 }

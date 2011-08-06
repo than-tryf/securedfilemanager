@@ -1,5 +1,8 @@
 package com.csc.sfm.server.domain;
 
+import static com.csc.sfm.server.domain.Resource.GET_ROOT_RESOURCES;
+import static com.csc.sfm.server.domain.Resource.LIST_RESOURCES;
+
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -23,13 +26,24 @@ import javax.persistence.Transient;
 @Entity
 @Table(name="T_RESOURCES")
 @NamedQueries({
-  @NamedQuery(name="findRootResources", query="SELECT r FROM Resource r WHERE r.parent IS NULL"),
-  @NamedQuery(name="listResources", query="SELECT r FROM Resource r")
+  @NamedQuery(name=GET_ROOT_RESOURCES, query="SELECT r FROM Resource r WHERE r.parent IS NULL"),
+  @NamedQuery(name=LIST_RESOURCES, query="SELECT r FROM Resource r")
 })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE", discriminatorType=DiscriminatorType.STRING, length=10)
-public abstract class Resource extends AbstractEntity {
+public abstract class Resource extends BaseEntity {
 
+	/*
+	 * CONST
+	 */
+	
+	public static final String GET_ROOT_RESOURCES = "getRootResources";
+	public static final String LIST_RESOURCES = "listResources";
+	
+	/*
+	 * ATTRIBUTES
+	 */
+	
   private Date creationDate;
   private Date modificationDate;
   private ResourceType type;
@@ -97,6 +111,11 @@ public abstract class Resource extends AbstractEntity {
   /*
    * PUBLIC
    */
+
+  @Transient
+  public String getStyleClass() {
+  	return this.type.getStyleClass();
+  }
   
   @Transient
   public String getPath() {
@@ -105,6 +124,11 @@ public abstract class Resource extends AbstractEntity {
   		result = parent.getPath() + name;
   	}
   	return result;
+  }
+  
+  @Transient
+  public boolean getIsFile() {
+  	return ResourceType.FILE.equals(type);
   }
   
   /*
