@@ -30,30 +30,22 @@
         height: 40px;
         width: 100%;
         background-color: #627aad;
+        color: white;
       }
       
       #globalHeaderTitle {
         float: left;
-        color: white;
         font-size: 1.5em;
         padding: 5px 10px;
       }
 
       #globalHeaderSearch {
-        float: right;
+        float: left;
         padding: 7px 10px;
       }
-
+      
       #globalHeaderSearchInput {
-        height: 22px;
-        line-height: 20px;
-        padding: 0 3px;
-        vertical-align: middle;
-        font-size: 1em;
-        border: 1px solid #1d4088;
         border-right: none;
-        padding-top: 2px;
-        color: #333;
       }
 
       #globalHeaderSearchButtonContainer {
@@ -79,6 +71,45 @@
         border-left: 1px solid #CCC;
       }
       
+      #globalHeaderAuthentication {
+        float: right;
+        padding: 7px 10px;
+      }
+      
+      .globalHeaderInput {
+        height: 22px;
+        line-height: 20px;
+        padding: 0 3px;
+        vertical-align: middle;
+        font-size: 1em;
+        border: 1px solid #1d4088;
+        padding-top: 2px;
+        color: #333;
+      }
+      
+      .globalHeaderInputLabel {
+        font-size: 0.8em;
+        margin-left: 10px;
+      }
+      
+      #globalHeaderConnectionButtonContainer {
+        height: 22px;
+        border: 1px solid #1d4088;
+        display: inline-block;
+        padding: 0;
+      }
+      
+      #globalHeaderConnectionButton {
+        height: 22px;
+        vertical-align: middle;
+        cursor: pointer;
+        padding: 0 7px;
+        color: white;
+        background-color: #3B5998;
+        border-top: 1px solid #98A9CA;
+        font-weight: bold;
+      }
+            
       #globalContent {
         width: 100%;
         margin: auto;
@@ -125,41 +156,41 @@
         border-top: 1px solid #b3b3b3;
       }
       
-      #resourcesDatagrid {
+      .resourcesDatagrid {
         border-collapse : collapse;
         width: 100%;
       }
 
-      #resourcesDatagrid th {
+      .resourcesDatagrid th {
         padding: 0 10px;
         text-align: center;
         font-weight: normal;
         font-style: italic;
       }
       
-      #resourcesDatagrid a {
+      .resourcesDatagrid a {
         text-decoration: none;
         color: black;
       }
       
-      #resourcesDatagrid a:hover {
+      .resourcesDatagrid a:hover {
         text-decoration: underline;
         color: blue;
       }
 
-      #resourcesDatagrid a.parent {
+      .resourcesDatagrid a.parent {
         background-image: url(images/parent.gif);
       }
 
-      #resourcesDatagrid a.directory {
+      .resourcesDatagrid a.directory {
         background-image: url(images/folder.gif);
       }
       
-      #resourcesDatagrid a.file {
+      .resourcesDatagrid a.file {
         background-image: url(images/file.gif);
       }
 
-      #resourcesDatagrid a.parent, #resourcesDatagrid a.directory, #resourcesDatagrid a.file {
+      .resourcesDatagrid a.parent, .resourcesDatagrid a.directory, .resourcesDatagrid a.file {
         background-color: transparent;
         background-repeat: no-repeat;
         background-position: left center;
@@ -167,7 +198,7 @@
         padding:1px 0 1px 16px;
       }
 
-      #resourcesDatagrid td {
+      .resourcesDatagrid td {
         padding: 0 10px;
       }
 

@@ -3,6 +3,8 @@ package com.csc.sfm.server.domain;
 import static com.csc.sfm.server.domain.Resource.GET_ROOT_RESOURCES;
 import static com.csc.sfm.server.domain.Resource.LIST_RESOURCES;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -121,9 +123,19 @@ public abstract class Resource extends BaseEntity {
   public String getPath() {
   	String result = "";
   	if (parent != null) {
-  		result = parent.getPath() + name;
+  		result = parent.getPath();
   	}
+  	result += name + "/";
   	return result;
+  }
+  
+  @Transient
+  public String getFormattedModificationDate() {
+  	if (modificationDate != null) {
+  		DateFormat df = new SimpleDateFormat("dd-MM-yyyy:hh'h'mm");
+  		return df.format(modificationDate);
+  	}
+  	return "";
   }
   
   @Transient

@@ -2,7 +2,7 @@ package com.csc.sfm.server.domain;
 
 public enum ResourceType {
 
-  DIRECTORY("directory"), FILE("file");
+  PARENT("parent"), DIRECTORY("directory"), FILE("file");
 
   /*
    * ATTRIBUTES
