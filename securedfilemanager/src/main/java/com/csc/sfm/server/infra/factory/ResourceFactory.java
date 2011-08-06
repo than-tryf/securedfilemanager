@@ -9,6 +9,7 @@ import com.csc.sfm.server.domain.File;
 import com.csc.sfm.server.domain.FileExtension;
 import com.csc.sfm.server.domain.Resource;
 import com.csc.sfm.server.domain.ResourceAccessibility;
+import com.csc.sfm.server.domain.ResourceType;
 
 public class ResourceFactory {
 
@@ -16,7 +17,18 @@ public class ResourceFactory {
    * PUBLIC
    */
   
-  public Directory newDirectoryInstance() {
+  public static Directory newParentInstance(Integer parentId) {
+    Directory parent = new Directory();
+    
+    initializeInstance(parent, parentId, "..", ResourceAccessibility.OPEN, null, null, null);
+    parent.setType(ResourceType.PARENT);
+    
+    parent.setChildren(new ArrayList<Resource>());
+    
+    return parent;
+  }
+	
+  public static Directory newDirectoryInstance() {
     Directory directory = new Directory();
     
     Date creationDate = GregorianCalendar.getInstance().getTime();
@@ -28,7 +40,7 @@ public class ResourceFactory {
     return directory;
   }
   
-  public File newFileInstance() {
+  public static File newFileInstance() {
     File file = new File();
     
     Date creationDate = GregorianCalendar.getInstance().getTime();
@@ -41,7 +53,7 @@ public class ResourceFactory {
     return file;
   }
   
-  private void initializeInstance(Resource resource, Integer id, String name, ResourceAccessibility accesibility, Resource parent, Date creationDate, Date modificationDate) {
+  private static void initializeInstance(Resource resource, Integer id, String name, ResourceAccessibility accesibility, Resource parent, Date creationDate, Date modificationDate) {
     resource.setId(id);
     resource.setName(name);
     resource.setAccessibility(accesibility);

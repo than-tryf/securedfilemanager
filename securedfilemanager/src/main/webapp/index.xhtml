@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
  
 
   <h:head profile="http://gmpg.org/xfn/11">
@@ -22,34 +23,38 @@
     <div id="blueBar" >
       <div id="globalContainer">
         <div id="globalHeader">
-          <span id="globalHeaderTitle">#{welcomeBean.message}</span>
-          <form id="searchForm" action="#" method="get">
-            <div id="globalHeaderSearch">
-              <input id="globalHeaderSearchInput" type="text" name="searchRequest" />
-              <div id="globalHeaderSearchButtonContainer">
-                <input id="globalHeaderSearchButton" type="submit" value=" " />
+          
+          <c:if test="#{featureController.globalSearchActivated}">
+	          <form id="searchForm" action="#" method="get" >
+	            <div id="globalHeaderSearch" >
+	              <input id="globalHeaderSearchInput" class="globalHeaderInput" type="text" name="searchRequest" size="30" />
+	              <div id="globalHeaderSearchButtonContainer">
+	                <input id="globalHeaderSearchButton" type="submit" value=" " />
+	              </div>
+	            </div>
+	          </form>
+          </c:if>
+        
+          <form id="authenticationForm" action="#" method="post">
+            <div id="globalHeaderAuthentication">
+              <span class="globalHeaderInputLabel">Login</span>
+              <input id="globalHeaderUsernameInput" class="globalHeaderInput" type="text" />
+              <span class="globalHeaderInputLabel">Password</span>
+              <input id="globalHeaderPasswordInput" class="globalHeaderInput" type="password" />
+              <div id="globalHeaderConnectionButtonContainer">
+                <input id="globalHeaderConnectionButton" type="submit" value="Connection" />
               </div>
             </div>
           </form>
         </div>
         <div id="globalContent">
+            <h:form>
           <div id="resourcesContainer">
             <div id="resourcesHeader">
-              <span id="resourcesTitle">/public/works/</span>
+              <span id="resourcesTitle">#{explorerController.currentLocation}</span>
             </div>
-            <h:form>
-<!--           <div id="resourcesContent">
-              <table id="resourcesDatagrid">
-                <tr><th id="resourceNameHeader">Name</th><th id="resourceSizeHeader">Size</th><th id="resourceModificationDateHeader">Last modification</th><th id="resourceDescriptionHeader">Description</th></tr>
-                <tr><td><span class="parent"><a href="#">..</a></span></td><td/><td/></tr>
-                <tr><td><span class="folder"><a href="#">jsf</a></span></td><td/><td class="resourceRowData">03-07-2011:09h00</td><td/></tr>
-                <tr><td><span class="folder"><a href="#">spring</a></span></td><td/><td class="resourceRowData">24-08-2010:20h12</td><td></td></tr>
-                <tr><td><span class="file"><a href="#">tata.txt</a></span></td><td class="resourceRowData">102 ko</td><td class="resourceRowData">10-05-2011:13h26</td></tr>
-                <tr><td><span class="file"><a href="#">toto.xml</a></span></td><td class="resourceRowData">1,3 mo</td><td class="resourceRowData">07-07-2011:12h50</td></tr>
-              </table>
-            </div>-->
             <div id="resourcesContent">
-                <h:dataTable id="resourcesDatagrid" value="#{explorerController.resources}"  var="item" 
+                <h:dataTable class="resourcesDatagrid" id="resourcesDatagrid" value="#{explorerController.resources}"  var="item" 
                             columnClasses="resourceNameColumn,resourceSizeColumn,resourceModificationDateColumn,resourceDescriptionColumn">
                   <h:column id="nameColumn">
                     <f:facet name="header">
@@ -70,7 +75,7 @@
                     <f:facet name="header">
                       <h:outputLabel value="Modification date" />
                     </f:facet>
-                    <h:outputText value="#{item.modificationDate}" />
+                    <h:outputText value="#{item.formattedModificationDate}" />
                   </h:column>
                   <h:column id="descriptionColumn">
                     <f:facet name="header">
@@ -80,8 +85,8 @@
                  </h:column>
                </h:dataTable>
               </div>
-            </h:form>
           </div>
+            </h:form>
         </div>
         <div id="globalFooter">
           <span id="globalFooterGenerationMetadata">Generated in 0.135s</span>

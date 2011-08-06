@@ -5,6 +5,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Transient;
+
+import com.csc.sfm.shared.util.SizeFormatter;
 
 @Entity
 @DiscriminatorValue("FILE")
@@ -37,6 +40,11 @@ public class File extends Resource {
   /*
    * PUBLIC
    */
+  
+  @Transient
+  public String getFormattedSize() {
+  	return SizeFormatter.format(size);
+  }
   
   /*
    * PRIVATE
