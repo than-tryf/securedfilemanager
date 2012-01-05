@@ -52,7 +52,7 @@ public abstract class Resource extends BaseEntity {
   private String name;
   private ResourceAccessibility accessibility;
   private Resource parent;
-  
+
   /*
    * GETTERS & SETTERS
    */
@@ -109,7 +109,7 @@ public abstract class Resource extends BaseEntity {
   public void setParent(Resource parent) {
     this.parent = parent;
   }
-  
+
   /*
    * PUBLIC
    */
@@ -140,7 +140,17 @@ public abstract class Resource extends BaseEntity {
   
   @Transient
   public boolean getIsFile() {
-  	return ResourceType.FILE.equals(type);
+  	return ResourceType.FILE == type;
+  }
+  
+  @Transient
+  public boolean getIsDirectory() {
+  	return ResourceType.DIRECTORY == type;
+  }
+  
+  @Transient
+  public boolean getIsParent() {
+    return ResourceType.PARENT == type;
   }
   
   /*

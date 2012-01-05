@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+ 
+  <ui:composition template="/template.xhtml" >
+
+	  <ui:define name="javascript">
+	    <h:outputScript library="javascript" name="explorer.js" target="head"/>
+	  </ui:define>
+
+	  <ui:define name="content">
+	    <div id="globalContent">
+	      <h:form id="resourcesForm">
+	        <div id="resourcesContainer">
+	          <div id="resourcesHeader">
+	            <span id="resourcesTitle">#{explorerController.currentLocation}</span>
+	            <div id="resourcesActionBar">
+	              <h:commandButton value="Add folder" /> 
+	              <h:commandButton value="Rename folder" /> 
+	              <h:commandButton value="Move folder" /> 
+	              <h:commandButton value="Clear folder" /> 
+	              <h:commandButton value="Delete folder" />
+	            </div>
+	          </div>
+	          <div id="resourcesContent">
+	            <h:dataTable name="resourcesDatagrid" 
+	                         class="resourcesDatagrid" 
+	                         id="resourcesDatagrid" 
+	                         value="#{explorerController.resources}" 
+	                         var="item" 
+	                         columnClasses="resourceNameColumn,resourceSizeColumn,resourceModificationDateColumn,resourceDescriptionColumn,resourceSelectedColumn">
+	              <h:column id="nameColumn">
+	                <f:facet name="header">
+	                  <h:outputLabel value="Name" />
+	                </f:facet>
+	                <h:commandLink styleClass="#{item.styleClass}" action="#{explorerController.processResource}" rendered="#{!item.isFile}">
+	                   <f:param name="resourceId" value="#{item.id}" />
+	                   <h:outputText value="#{item.name}"/>
+	                </h:commandLink>
+	                <h:outputLink styleClass="#{item.styleClass}" value="file?id=#{item.id}" rendered="#{item.isFile}" >
+	                  <h:outputText value="#{item.name}"/>
+	                </h:outputLink>
+	              </h:column>
+	              <h:column id="sizeColumn">
+	                <f:facet name="header">
+	                  <h:outputLabel value="Size" />
+	                </f:facet>
+	                <h:outputText value="#{item.formattedSize}" rendered="#{item.isFile}"/>
+	              </h:column>
+	              <h:column id="modificationDateColumn">
+	                <f:facet name="header">
+	                  <h:outputLabel value="Modification date" />
+	                </f:facet>
+	                <h:outputText value="#{item.formattedModificationDate}" />
+	              </h:column>
+	              <h:column id="descriptionColumn">
+	                <f:facet name="header">
+	                  <h:outputLabel value="Description" />
+	                </f:facet>
+	               <h:outputText value="" />
+	             </h:column>
+	             <h:column id="selectColumn">
+	               <h:selectBooleanCheckbox value="#{explorerController.checkedResources[item.id]}" rendered="#{!item.isParent}"/>
+	             </h:column>
+	           </h:dataTable>
+	          </div>
+	        </div>
+	      </h:form>
+	    </div>
+	  </ui:define>
+
+  </ui:composition>
+
+</html>

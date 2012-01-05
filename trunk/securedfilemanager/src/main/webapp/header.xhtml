@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"> 
+
+  <ui:composition>
+
+   <div id="globalHeader">
+     
+     <!-- GLOBAL SEARCH -->
+     <c:if test="#{featureController.globalSearchActivated}">
+       <c:if test="#{applicationController.userConnected}">
+       <h:form id="searchForm" action="#" method="get" >
+         <div class="globalHeaderSearch" >
+           <input class="globalHeaderInput" type="text" name="searchRequest" size="30" />
+           <div class="globalHeaderSearchButtonContainer">
+             <h:commandButton class="globalHeaderSearchButton" value=" " />
+           </div>
+         </div>
+       </h:form>
+       </c:if>
+     </c:if>
+   
+     <!-- USER AUTHENTICATION -->
+     <c:if test="#{featureController.userAuthenticationActivated}">
+       <div class="globalHeaderAuthentication">
+       <!-- When the user is not connected -->
+       <!-- Then the authentication form is displayed -->
+       <h:form id="authenticationForm" action="#" method="post" rendered="#{!applicationController.userConnected}">
+          <h:outputLabel class="globalHeaderInputLabel" value="Login"/>
+          <h:inputText class="globalHeaderInput" type="text" value="#{applicationController.username}"/>
+          <h:outputLabel class="globalHeaderInputLabel" value="Password"/>
+          <h:inputSecret class="globalHeaderInput" value="#{applicationController.password}"/>
+          <div class="globalHeaderConnectionButtonContainer">
+            <h:commandButton class="globalHeaderConnectionButton" value="Connect" action="#{applicationController.connectUser}" />
+          </div>
+       </h:form>
+
+       <!-- Else the user identity and the logout button are displayed  -->
+         <h:form rendered="#{applicationController.userConnected}">
+           <div class="globalHeaderConnectionButtonContainer">
+             <h:commandButton class="globalHeaderConnectionButton" value="Disconnect" action="#{applicationController.disconnectUser}" />
+           </div>
+         </h:form>
+       </div>
+    </c:if>
+
+   </div>
+
+  </ui:composition>
+
+</html>

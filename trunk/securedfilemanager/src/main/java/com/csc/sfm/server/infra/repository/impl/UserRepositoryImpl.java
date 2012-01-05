@@ -35,7 +35,7 @@ public class UserRepositoryImpl extends BaseEntityRepositoryImpl<User> implement
   @SuppressWarnings("unchecked")
 	@Override
   public List<User> list() {
-    return em.createNamedQuery("findAllUsers").getResultList();
+    return em.createNamedQuery("listUsers").getResultList();
   }
 
 	@Override

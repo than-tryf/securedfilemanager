@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.csc.sfm.server.domain.Directory;
+import com.csc.sfm.server.domain.File;
 import com.csc.sfm.server.domain.Resource;
 import com.csc.sfm.server.infra.repository.ResourceRepository;
 
@@ -41,6 +43,14 @@ public class ResourceRepositoryImpl extends BaseEntityRepositoryImpl<Resource> i
 		return em.find(Resource.class, id);
 	}
 	
+	@Override
+	public File getFile(Integer id) {
+		return em.find(File.class, id);
+	}
 	
+	@Override
+	public Directory getDirectory(Integer id) {
+		return em.find(Directory.class, id);
+	}
 	
 }
