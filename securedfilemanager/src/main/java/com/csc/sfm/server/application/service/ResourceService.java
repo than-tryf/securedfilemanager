@@ -10,4 +10,6 @@ public interface ResourceService {
 	
   public Resource getResource(Integer id);
 
+  public List<Resource> find();
+
 }

@@ -7,7 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
-import com.csc.sfm.shared.util.SizeFormatter;
+import com.csc.sfm.server.infra.util.SizeFormatter;
 
 @Entity
 @DiscriminatorValue("FILE")
@@ -15,6 +15,8 @@ public class File extends Resource {
 
   private FileExtension extension;
   private double size;
+  private String contentType;
+  private String uri;
   
   /*
    * GETTERS & SETTERS
@@ -36,12 +38,28 @@ public class File extends Resource {
   public void setSize(double size) {
     this.size = size;
   }
-  
+
+  @Column(name="CONTENTTYPE")
+  public String getContentType() {
+		return contentType;
+	}
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+ 
+	@Column(name="URI")
+	public String getUri() {
+		return uri;
+	}
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
+	
   /*
    * PUBLIC
    */
   
-  @Transient
+	@Transient
   public String getFormattedSize() {
   	return SizeFormatter.format(size);
   }

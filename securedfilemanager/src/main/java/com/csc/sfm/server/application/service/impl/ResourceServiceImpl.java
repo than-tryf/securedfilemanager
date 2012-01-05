@@ -46,6 +46,11 @@ public class ResourceServiceImpl implements ResourceService, Serializable {
   	return result;
   }
 
+	@Override
+	public List<Resource> find() {
+		return resourceRepository.list();
+	}
+  
   /*
    * PRIVATE
    */

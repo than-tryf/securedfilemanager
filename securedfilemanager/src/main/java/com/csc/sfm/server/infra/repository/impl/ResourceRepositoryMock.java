@@ -46,6 +46,8 @@ public class ResourceRepositoryMock implements ResourceRepository, Serializable 
 		fileToto.setAccessibility(ResourceAccessibility.OPEN);
 		fileToto.setExtension(FileExtension.XML);
 		fileToto.setSize(123);
+		fileToto.setContentType("application/octet-stream");
+		fileToto.setUri("test.txt");
 		save(fileToto);
 
 		File fileTata = new File();
@@ -127,6 +129,18 @@ public class ResourceRepositoryMock implements ResourceRepository, Serializable 
 
 	@Override
 	public Resource getResource(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public File getFile(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Directory getDirectory(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

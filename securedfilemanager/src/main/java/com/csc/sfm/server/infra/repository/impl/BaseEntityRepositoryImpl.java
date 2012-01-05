@@ -15,7 +15,7 @@ public abstract class BaseEntityRepositoryImpl<E> {
   }
 
   public E update(E entity) {
-    em.merge(entity);
+    entity = em.merge(entity);
     em.flush();
     return entity;
   }

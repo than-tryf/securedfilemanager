@@ -4,6 +4,8 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import com.csc.sfm.server.infra.util.SizeFormatter;
+
 public class SizeFormatterTest {
 
 	@Test
